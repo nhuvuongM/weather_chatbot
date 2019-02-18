@@ -12,6 +12,7 @@ let matchPattern = (userInput, callback) => {
   if(getResult){
     return callback({
       intent: getResult.intent,
+      entities2: createEntities(userInput, getResult.location),
       entities: createEntities(userInput, getResult.pattern),
       priority : getResult.priority
     });
@@ -21,6 +22,11 @@ let matchPattern = (userInput, callback) => {
     return callback({});
   }
 }
+
+
+
+
+
 
 let createEntities = (userInput, pattern) => {
   return XRegExp.exec(userInput, XRegExp(pattern, "i"))
